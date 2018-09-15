@@ -60,11 +60,12 @@ class HomeScreen extends React.Component {
         }
         return (
             <View style={styles.container}>
-                <Text style={[styles.input, {fontSize: 30}]}>{'Welcome to\nCoffee on Campus!'}</Text>
+                <Text style={[styles.input, {fontSize: 35}]}>{'Degreez'}</Text>
                 <View style={{padding:25}}>
                     <Image
                         style={{width: 150, height: 150, borderRadius: 150/2}}
-                        source={{uri: 'https://www.siliconvalleyandbeyond.com/wp-content/uploads/nathan-dumlao-287719-e1513904063816-495x400.jpg'}}
+                        //source={{uri: 'https://www.siliconvalleyandbeyond.com/wp-content/uploads/nathan-dumlao-287719-e1513904063816-495x400.jpg'}}
+                        source={require('./assets/images/hoops.png')}
                     />
                 </View>
                 <Text style={[styles.input]}>You are logged in as{'\n'}{this.state.userToken}{'\n'}</Text>
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'lightyellow'
+        backgroundColor: 'lightblue'
     },
     input: {
         fontSize: 18,
