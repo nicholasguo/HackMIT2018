@@ -1,0 +1,3 @@
+[submodule "degrees_flask"]
+	path = degrees_flask
+	url = https://github.com/chenblair/degrees_flask
