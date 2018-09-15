@@ -15,7 +15,7 @@ import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
 
 import { LoggedOutScreen, SignUpScreen, SignInScreen, AuthLoadingScreen } from './Authentication'
 import { ProfileScreen, EditProfileScreen } from "./Profile";
-import { MatchesScreen } from "./Matches";
+import { MapScreen } from "./Map";
 
 class HomeScreen extends React.Component {
     static navigationOptions = ({ navigation }) => {
@@ -57,7 +57,7 @@ class HomeScreen extends React.Component {
                 <Text style={{fontSize: 30, textAlign: 'center'}}>{'Welcome to\nCoffee on Campus!\n'}</Text>
                 <Text style={{fontSize: 18, textAlign: 'center'}}>You are logged in as{'\n'}{this.state.userToken}{'\n'}</Text>
                 <Button title="View your profile" onPress={this._showProfile} />
-                <Button title="See my matches" onPress={this._showMatches} />
+                <Button title="See my map" onPress={this._showMap} />
             </View>
         );
     }
@@ -66,8 +66,8 @@ class HomeScreen extends React.Component {
         this.props.navigation.navigate('Profile', {user: this.state.userToken, userToken: this.state.userToken, isLoading: true});
     };
 
-    _showMatches = () => {
-        this.props.navigation.navigate('Matches', {userToken: this.state.userToken, isLoading: true});
+    _showMap = () => {
+        this.props.navigation.navigate('Map', {userToken: this.state.userToken, isLoading: true});
     };
 
     _signOutAsync = async () => {
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
  * }
  */
 
-const AppStack = createStackNavigator({ Home: HomeScreen, Profile: ProfileScreen, EditProfile: EditProfileScreen, Matches: MatchesScreen });
+const AppStack = createStackNavigator({ Home: HomeScreen, Profile: ProfileScreen, EditProfile: EditProfileScreen, Map: MapScreen });
 const AuthStack = createStackNavigator({ LoggedOut: LoggedOutScreen, SignIn: SignInScreen, SignUp: SignUpScreen });
 
 export default createSwitchNavigator(
