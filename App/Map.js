@@ -15,7 +15,8 @@ export class MapScreen extends React.Component {
                         longitude: 18.068,
                         latitudeDelta: 0.1,
                         longitudeDelta: 0.1
-                    }}/>
+                    }}>
+                </MapView>
             </View>
         );
     }

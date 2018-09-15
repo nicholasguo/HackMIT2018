@@ -13,6 +13,7 @@ import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
 import { Font } from 'expo';
 
 import Button from 'react-native-button'
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export class LoggedOutScreen extends React.Component {
     constructor(props) {
@@ -75,7 +76,11 @@ export class SignUpScreen extends React.Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <KeyboardAwareScrollView
+                resetScrollToCoords={{ x: 0, y: 0 }}
+                contentContainerStyle={styles.container}
+                scrollEnabled={false}
+            >
                 <Text style={[styles.input, {fontSize: 30}]}>{'Coffee on Campus'}</Text>
                 <View style={{padding:25}}>
                     <Image
@@ -112,7 +117,7 @@ export class SignUpScreen extends React.Component {
                     />
                 </View>
                 <Button containerStyle={{padding:5}} style={styles.input} onPress={this._signUpAsync}>Sign Up</Button>
-            </View>
+            </KeyboardAwareScrollView>
         );
     }
 
@@ -151,7 +156,11 @@ export class SignInScreen extends React.Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <KeyboardAwareScrollView
+                resetScrollToCoords={{ x: 0, y: 0 }}
+                contentContainerStyle={styles.container}
+                scrollEnabled={false}
+            >
                 <Text style={[styles.input, {fontSize: 30}]}>{'Coffee on Campus'}</Text>
                 <View style={{padding:25}}>
                     <Image
@@ -178,7 +187,7 @@ export class SignInScreen extends React.Component {
                     />
                 </View>
                 <Button containerStyle={{padding:5}} style={styles.input} onPress={this._signInAsync}>Sign In</Button>
-            </View>
+            </KeyboardAwareScrollView>
         );
     }
 
