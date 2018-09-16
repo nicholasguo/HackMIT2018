@@ -25,13 +25,10 @@ export class MapScreen extends React.Component {
                         latitudeDelta: 0.1,
                         longitudeDelta: 0.1
                     }}>
-<<<<<<< HEAD
                     {this.state.nodes.map(ele => <Marker
                         coordinate={ele}
                         onPress={() => this.props.navigation.navigate('Profile', {user: "a", userToken: "a", isLoading: true})}
                     />)};
-=======
->>>>>>> 34ea44c044b7de78be88f112ea5ce85b179825cc
                 </MapView>
             </View>
         );

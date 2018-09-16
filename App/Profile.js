@@ -73,36 +73,19 @@ export class ProfileScreen extends React.Component {
                 <View style={{flex: 1, justifyContent: 'center'}}>
                     <Text style={[styles.input, {fontSize: 30}]}>{this.state.name}</Text>
                 </View>
+                <View style={{flex: 1, justifyContent: 'center'}}>
+                    <Text style={[styles.input]}>{this.state.user}</Text>
+                </View>
+                <View style={{flex: 1, justifyContent: 'center'}}>
+                    <Text style={[styles.input]}>{this.state.email}</Text>
+                </View>
                 <View style={{flex: 3, justifyContent: 'center'}}>
                     <Image
                         style={{width: 200, height: 200, borderRadius: 200/2}}
                         source={{uri: this.state.image}}
                     />
                 </View>
-                <View style={{flex: 1.5, flexDirection: 'row', justifyContent: 'center'}}>
 
-                    <View style={{flex: 1, alignItems: 'center', borderWidth: 1 / PixelRatio.get()}}>
-                        <Text style={[styles.input]}>School:</Text>
-                        <Text style={[styles.input]}>{this.state.college}</Text>
-                    </View>
-                    <View style={{flex: 1, alignItems: 'center', borderWidth: 1 / PixelRatio.get()}}>
-                        <Text style={[styles.input]}>Class:</Text>
-                        <Text style={[styles.input]}>{this.state.year}</Text>
-                    </View>
-
-                </View>
-                <View style={{flex: 1.5, flexDirection: 'row', justifyContent: 'center'}}>
-
-                    <View style={{flex: 1, alignItems: 'center', borderWidth: 1 / PixelRatio.get()}}>
-                        <Text style={[styles.input]}>Major:</Text>
-                        <Text style={[styles.input]}>{this.state.major}</Text>
-                    </View>
-                    <View style={{flex: 1, alignItems: 'center', borderWidth: 1 / PixelRatio.get()}}>
-                        <Text style={[styles.input]}>Fun Fact:</Text>
-                        <Text style={[styles.input]}>{this.state.description}</Text>
-                    </View>
-
-                </View>
                 <StatusBar barStyle="default" />
             </View>
         );
@@ -193,44 +176,7 @@ export class EditProfileScreen extends React.Component {
                         source={{uri: this.state.image}}
                     />
                 </View>
-                <View style={{flex: 1.5, flexDirection: 'row', justifyContent: 'center'}}>
 
-                    <View style={{flex: 1, alignItems: 'center', borderWidth: 1 / PixelRatio.get()}}>
-                        <Text style={[styles.input]}>School:</Text>
-                        <TextInput style={[styles.input]}
-                                   multiline={true}
-                                   defaultValue={this.state.college}
-                                   placeholder="Enter the school you attend"
-                                   onChangeText={(college) => {this.setState({college}); this.props.navigation.setParams({college});}}/>
-                    </View>
-                    <View style={{flex: 1, alignItems: 'center', borderWidth: 1 / PixelRatio.get()}}>
-                        <Text style={[styles.input]}>Class:</Text>
-                        <TextInput style={[styles.input]}
-                                   multiline={true}
-                                   defaultValue={this.state.year}
-                                   placeholder="Enter your graduation year"
-                                   onChangeText={(year) => {this.setState({year}); this.props.navigation.setParams({year});}}/>
-                    </View>
-
-                </View>
-                <View style={{flex: 1.5, flexDirection: 'row', justifyContent: 'center'}}>
-                    <View style={{flex: 1, alignItems: 'center', borderWidth: 1 / PixelRatio.get()}}>
-                        <Text style={[styles.input]}>Major:</Text>
-                        <TextInput style={[styles.input]}
-                                   multiline={true}
-                                   defaultValue={this.state.major}
-                                   placeholder="What's your major"
-                                   onChangeText={(major) => {this.setState({major}); this.props.navigation.setParams({major});}}/>
-                    </View>
-                    <View style={{flex: 1, alignItems: 'center', borderWidth: 1 / PixelRatio.get()}}>
-                        <Text style={[styles.input]}>Fun Fact:</Text>
-                        <TextInput style={[styles.input]}
-                                   multiline={true}
-                                   defaultValue={this.state.description}
-                                   placeholder="Tell us a fun fact about yourself"
-                                   onChangeText={(description) => {this.setState({description}); this.props.navigation.setParams({description});}}/>
-                    </View>
-                </View>
                 <StatusBar barStyle="default" />
             </KeyboardAwareScrollView>
         );
