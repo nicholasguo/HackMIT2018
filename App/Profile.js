@@ -40,7 +40,15 @@ export class ProfileScreen extends React.Component {
                 ),
             };
         return {
-            title: navigation.getParam('user', 'None') + '\'s profile',
+            title: 'Profile',
+            headerTitleStyle: {fontFamily: 'montserrat'},
+            headerLeft: (
+                <Button
+                    style={{fontFamily: 'montserrat', paddingLeft: 10}}
+                    onPress={() => navigation.goBack()}>
+                    Back
+                </Button>
+            ),
         };
     };
 
