@@ -78,14 +78,14 @@ export class ProfileScreen extends React.Component {
                 </View>
                 <View style={{flex: 3.5, justifyContent: 'center'}}>
                     <Image
-                        style={{width: 200, height: 200, borderRadius: 200/2}}
+                        style={{width: 200, height: 200, borderRadius: 200/2, borderWidth: 2}}
                         source={{uri: this.state.image}}
                     />
                 </View>
-                <View style={{flex: 2, justifyContent: 'center', flexDirection: 'row'}}>
+                <View style={{flex: 2, justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
                     <Text style={[styles.input]}>Color:   </Text>
                     <View
-                        style={{width: 20, height: 20, borderWidth: 1, borderRadius: 50/2, backgroundColor: this.state.color}}
+                        style={{width: 30, height: 30, borderWidth: 1, borderRadius: 50/2, backgroundColor: this.state.color}}
                     />
                 </View>
 
@@ -169,37 +169,40 @@ export class EditProfileScreen extends React.Component {
                 scrollEnabled={false}
             >
                 <View style={{flex: 2, justifyContent: 'space-around'}}>
-                    <TextInput style={[styles.input, {fontSize: 30}]} defaultValue={this.state.name}
+                    <TextInput style={[styles.input, {fontSize: 30, color: '#33ccff'}]} defaultValue={this.state.name}
                                placeholder="Enter your name"
                                onChangeText={(name) => {this.setState({name}); this.props.navigation.setParams({name});}}/>
                     <Text style={[styles.input]}>username: {this.state.user}</Text>
                     <View style={{justifyContent: 'center', flexDirection: 'row', alignItems: 'center'}}>
                         <Text style={[styles.input]}>email:  </Text>
-                        <TextInput style={[styles.input]} defaultValue={this.state.email}
+                        <TextInput style={[styles.input, {color: '#33ccff'}]} defaultValue={this.state.email}
                                    placeholder="Enter your email"
                                    onChangeText={(email) => {this.setState({email}); this.props.navigation.setParams({email});}}/>
                     </View>
                 </View>
                 <View style={{flex: 3.5, justifyContent: 'center'}}>
                     <Image
-                        style={{width: 200, height: 200, borderRadius: 200/2}}
+                        style={{width: 200, height: 200, borderRadius: 200/2, borderWidth: 2}}
                         source={{uri: this.state.image}}
                     />
                 </View>
-                <View style={{flex: 2, justifyContent: 'center', flexDirection: 'row'}}>
-                    <Text style={[styles.input]}>Color:   </Text>
-                    <TouchableOpacity
-                        style={{width: 20, height: 20, borderWidth: 1, borderRadius: 50/2, backgroundColor: this.state.color}}
-                        onPress={ () => {
-                            var letters = '0123456789ABCDEF';
-                            var color = '#';
-                            for (var i = 0; i < 6; i++) {
-                                color += letters[Math.floor(Math.random() * 16)];
-                            }
-                            this.state.color = color;
-                            this.props.navigation.setParams({color: color});
-                        }}
-                    />
+                <View style={{flex: 2, justifyContent: 'center', alignItems: 'center'}}>
+                    <View style={{justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
+                        <Text style={[styles.input]}>Color:   </Text>
+                        <TouchableOpacity
+                            style={{width: 30, height: 30, borderWidth: 1, borderRadius: 50/2, backgroundColor: this.state.color}}
+                            onPress={ () => {
+                                var letters = '0123456789ABCDEF';
+                                var color = '#';
+                                for (var i = 0; i < 6; i++) {
+                                    color += letters[Math.floor(Math.random() * 16)];
+                                }
+                                this.state.color = color;
+                                this.props.navigation.setParams({color: color});
+                            }}
+                        />
+                    </View>
+                    <Text style={[styles.input, {color: '#33ccff'}]}>  (Touch circle to change color.)</Text>
                 </View>
                 <StatusBar barStyle="default" />
             </KeyboardAwareScrollView>

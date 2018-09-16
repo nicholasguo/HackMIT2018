@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+    Button,
     StyleSheet,
     Text,
     View,
@@ -8,6 +9,11 @@ import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 
 export class MapScreen extends React.Component {
+    static navigationOptions = ({ navigation }) => {
+        return {
+            title: 'Map',
+        };
+    };
 
     constructor(props) {
         super(props);

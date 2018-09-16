@@ -45,7 +45,7 @@ export class LoggedOutScreen extends React.Component {
                 <Text style={[styles.input, {fontSize: 30}]}>{'Degreez'}</Text>
                 <View style={{padding:25}}>
                     <Image
-                        style={{width: 150, height: 150, borderRadius: 150/2}}
+                        style={{width: 150, height: 150, borderRadius: 150/2, borderWidth: 2}}
                         source={require('./assets/images/hoops.png')}
                     />
                 </View>
@@ -84,7 +84,7 @@ export class SignUpScreen extends React.Component {
                 <Text style={[styles.input, {fontSize: 30}]}>{'Degreez'}</Text>
                 <View style={{padding:25}}>
                     <Image
-                        style={{width: 150, height: 150, borderRadius: 150/2}}
+                        style={{width: 150, height: 150, borderRadius: 150/2, borderWidth: 2}}
                         source={require('./assets/images/hoops.png')}
                     />
                 </View>
@@ -164,7 +164,7 @@ export class SignInScreen extends React.Component {
                 <Text style={[styles.input, {fontSize: 30}]}>{'Degreez'}</Text>
                 <View style={{padding:25}}>
                     <Image
-                        style={{width: 150, height: 150, borderRadius: 150/2}}
+                        style={{width: 150, height: 150, borderRadius: 150/2, borderWidth: 2}}
                         source={require('./assets/images/hoops.png')}
                     />
                 </View>
