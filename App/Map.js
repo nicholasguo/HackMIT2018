@@ -13,9 +13,12 @@ export class MapScreen extends React.Component {
         super(props);
         this.state = {
             nodes: [{latitude: 42.3770, longitude: -71.1167}],
+            currCoor: {latitude: 0, longitude: 0, timestamp: 0},
         }
     }
-
+    componentDidMount() {
+        navigator.geolocation.watchPosition((pos) => this.setState({currCoor: {latitude: pos.coords.latitude, longitude: pos.coords.longitude, timestamp: pos.timestamp}}))
+    }
     render() {
         return (
             <View style={styles.container}>
@@ -29,11 +32,9 @@ export class MapScreen extends React.Component {
                         key={ele}
                         coordinate={ele}
                         onPress={() => this.props.navigation.navigate('Profile', {user: "a", userToken: "a", isLoading: true})}
-<<<<<<< HEAD
+                        image={require('./assets/images/grey_question_mark.png')}
                     />)}
-=======
-                    />)};
->>>>>>> 265bd3efc300bc66f9d4b458380e6c4dcabd566c
+                    <Marker coordinate={{latitude: this.state.currCoor.latitude, longitude: this.state.currCoor.longitude}}/>
                 </MapView>
             </View>
         );
