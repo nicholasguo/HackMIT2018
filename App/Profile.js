@@ -42,7 +42,7 @@ export class ProfileScreen extends React.Component {
 
     async getProfile() {
         let response = await fetch('http://hackmit-degrees.herokuapp.com/get_profile?'
-            + 'user=' + this.state.user
+            + 'username=' + this.state.user
         );
         let responseJson = await response.json();
         this.setState(responseJson);
@@ -74,15 +74,21 @@ export class ProfileScreen extends React.Component {
                     <Text style={[styles.input, {fontSize: 30}]}>{this.state.name}</Text>
                 </View>
                 <View style={{flex: 1, justifyContent: 'center'}}>
-                    <Text style={[styles.input]}>{this.state.user}</Text>
+                    <Text style={[styles.input]}>username: {this.state.user}</Text>
                 </View>
                 <View style={{flex: 1, justifyContent: 'center'}}>
-                    <Text style={[styles.input]}>{this.state.email}</Text>
+                    <Text style={[styles.input]}>email: {this.state.email}</Text>
                 </View>
                 <View style={{flex: 3, justifyContent: 'center'}}>
                     <Image
                         style={{width: 200, height: 200, borderRadius: 200/2}}
                         source={{uri: this.state.image}}
+                    />
+                </View>
+                <View style={{flex: 1, justifyContent: 'center', flexDirection: 'row'}}>
+                    <Text style={[styles.input]}>Color:   </Text>
+                    <View
+                        style={{width: 20, height: 20, borderWidth: 5, borderRadius: 50/2, backgroundColor: this.state.color}}
                     />
                 </View>
 
@@ -111,9 +117,9 @@ export class EditProfileScreen extends React.Component {
                                 'Content-Type': 'application/json',
                             },
                             body: JSON.stringify({
-                                user: navigation.getParam('user'),
+                                username: navigation.getParam('user'),
                                 name:  navigation.getParam('name'),
-                                college:  navigation.getParam('college'),
+                                email:  navigation.getParam('email'),
                                 year:  navigation.getParam('year'),
                                 major:  navigation.getParam('major'),
                                 description:  navigation.getParam('description')
@@ -144,7 +150,7 @@ export class EditProfileScreen extends React.Component {
 
     async componentDidMount() {
         let response = await fetch('http://hackmit-degrees.herokuapp.com/get_profile?'
-            + 'user=' + this.state.user
+            + 'username=' + this.state.user
         );
         let responseJson = await response.json();
         this.setState(responseJson);
@@ -170,13 +176,27 @@ export class EditProfileScreen extends React.Component {
                                placeholder="Enter your name"
                                onChangeText={(name) => {this.setState({name}); this.props.navigation.setParams({name});}}/>
                 </View>
+                <View style={{flex: 1, justifyContent: 'center'}}>
+                    <Text style={[styles.input]}>username: {this.state.user}</Text>
+                </View>
+                <View style={{flex: 1, justifyContent: 'center', flexDirection: 'row', alignItems: 'center'}}>
+                    <Text style={[styles.input]}>email:  </Text>
+                    <TextInput style={[styles.input]} defaultValue={this.state.email}
+                               placeholder="Enter your email"
+                               onChangeText={(email) => {this.setState({email}); this.props.navigation.setParams({email});}}/>
+                </View>
                 <View style={{flex: 3, justifyContent: 'center'}}>
                     <Image
                         style={{width: 200, height: 200, borderRadius: 200/2}}
                         source={{uri: this.state.image}}
                     />
                 </View>
-
+                <View style={{flex: 1, justifyContent: 'center', flexDirection: 'row'}}>
+                    <Text style={[styles.input]}>Color:   </Text>
+                    <View
+                        style={{width: 20, height: 20, borderWidth: 5, borderRadius: 50/2, backgroundColor: this.state.color}}
+                    />
+                </View>
                 <StatusBar barStyle="default" />
             </KeyboardAwareScrollView>
         );
