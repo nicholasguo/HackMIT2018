@@ -63,7 +63,7 @@ class HomeScreen extends React.Component {
                 <Text style={[styles.input, {fontSize: 35}]}>{'Degreez'}</Text>
                 <View style={{padding:25}}>
                     <Image
-                        style={{width: 150, height: 150, borderRadius: 150/2}}
+                        style={{width: 150, height: 150, borderRadius: 150/2, borderWidth: 2}}
                         //source={{uri: 'https://www.siliconvalleyandbeyond.com/wp-content/uploads/nathan-dumlao-287719-e1513904063816-495x400.jpg'}}
                         source={require('./assets/images/hoops.png')}
                     />
