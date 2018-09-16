@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import Button from 'react-native-button'
-
+import { PolyDraw } from './PolyDraw'
 export class MapScreen extends React.Component {
     static navigationOptions = ({ navigation }) => {
         return {
@@ -22,6 +22,13 @@ export class MapScreen extends React.Component {
                     Back
                 </Button>
             ),
+            headerRight: (
+                <Button
+                    style={{fontFamily: 'montserrat', paddingRight: 10}}
+                    onPress={() => navigation.setParams({shouldTraverse: !navigation.getParam('shouldTraverse', false)})}>
+                    Traverse
+                </Button>
+            ),
         };
     };
 
@@ -32,6 +39,7 @@ export class MapScreen extends React.Component {
             currCoor: {latitude: 0, longitude: 0, timestamp: 0},
             user: this.props.navigation.getParam('userToken', 'None'),
             isLoading: true,
+            shouldTraverse: false,
         }
     }
     async componentDidMount() {
@@ -44,12 +52,27 @@ export class MapScreen extends React.Component {
             );
             let profileJson = await profileres.json();
 
+            await fetch('http://hackmit-degrees.herokuapp.com/add_new_location', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({"username": this.state.user, "lat": pos.coords.latitude, "lng": pos.coords.longitude,})
+                // "Content-Type": "application/x-www-form-urlencoded",
+            },)
+
             this.setState({nodes: resJson, isLoading: false});
             this.setState(profileJson);
         })
     }
+    async getTraverse() {
+        let traverse = await fetch('http://hackmit-degrees.herokuapp.com/traverse'+'username='+this.state.user);
+        let traverseJson = await traverse.json();
+        this.setState({traverse: traverseJson, shouldTraverse: true});
+    }
     render() {
-        console.log(this.state)
+        console.log(this.state.nodes)
         if (this.state.isLoading) {
             return(
                 <View style={{flex: 1, padding: 20}}>
@@ -70,7 +93,7 @@ export class MapScreen extends React.Component {
                             flat={true}
                             key={`${ele.coords[0]}+${ele.coords[1]}+${ele.user}`}
                             coordinate={{latitude: ele.coords[0], longitude: ele.coords[1]}}
-                            onPress={() => this.props.navigation.navigate('Profile', {user: ele.user, userToken: ele.user, isLoading: true})}
+                            onPress={() => this.props.navigation.navigate('Profile', {user: ele.otherUser, userToken: this.state.user, isLoading: true})}
                         >
                             <Image source={require('./assets/images/grey_question_mark.png')} style={{height: 30, width: 30}}/>
                         </Marker>)}
@@ -80,8 +103,10 @@ export class MapScreen extends React.Component {
                         pinColor={`${this.state.color}`}
                         onPress={() => this.props.navigation.navigate('Profile', {user: this.state.user, userToken: this.state.userToken, isLoading: true})}
                     >
-                        <View style={{backgroundColor: "#ffffff", width: 24, height: 24, borderRadius: 12, borderWidth: 1}}/>
+                        <View style={{backgroundColor: this.state.color, width: 20, height: 20, borderRadius: 10, borderWidth: 1.5}}/>
                     </Marker>
+                    {this.props.navigation.getParam({shouldTraverse: false}) && <PolyDraw coords={this.state.traverse} />}
+                    <Button onPress={this.getTraverse}>Traverse!</Button>
                 </MapView>
             </View>
         );
