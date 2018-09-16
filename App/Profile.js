@@ -3,7 +3,6 @@ import {
     ActivityIndicator,
     Alert,
     AsyncStorage,
-    Button,
     Image,
     StatusBar,
     StyleSheet,
@@ -15,19 +14,29 @@ import {
 import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Font } from 'expo';
+import Button from 'react-native-button'
 
 export class ProfileScreen extends React.Component {
     static navigationOptions = ({ navigation }) => {
         if (navigation.getParam('userToken', 'None') == navigation.getParam('user', 'None'))
             return {
                 title: 'Profile',
+                headerTitleStyle: {fontFamily: 'montserrat'},
+                headerLeft: (
+                    <Button
+                        style={{fontFamily: 'montserrat', paddingLeft: 10}}
+                        onPress={() => navigation.goBack()}>
+                        Back
+                    </Button>
+                ),
                 headerRight: (
                     <Button
+                        style={{fontFamily: 'montserrat', paddingRight: 10}}
                         onPress={async () => {
                             navigation.navigate('EditProfile', navigation.state.params);
-                        }}
-                        title="Edit"
-                    />
+                        }}>
+                        Edit
+                    </Button>
                 ),
             };
         return {
@@ -104,8 +113,17 @@ export class EditProfileScreen extends React.Component {
     static navigationOptions = ({ navigation }) => {
         return {
             headerTitle: navigation.getParam('newUser', false) ? 'Create your profile' : 'Edit your profile',
+            headerTitleStyle: {fontFamily: 'montserrat'},
+            headerLeft: (
+                <Button
+                    style={{fontFamily: 'montserrat', paddingLeft: 10}}
+                    onPress={() => navigation.goBack()}>
+                    Back
+                </Button>
+            ),
             headerRight: (
                 <Button
+                    style={{fontFamily: 'montserrat', paddingRight: 10}}
                     onPress={async () => {
                         let response = await fetch('http://hackmit-degrees.herokuapp.com/update_profile', {
                             method: 'POST',
@@ -132,9 +150,9 @@ export class EditProfileScreen extends React.Component {
                         } else {
                             Alert.alert(responseJson.reason);
                         }
-                    }}
-                    title="Save"
-                />
+                    }}>
+                    Save
+                </Button>
             ),
         };
     };

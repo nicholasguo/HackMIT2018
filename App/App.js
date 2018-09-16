@@ -21,14 +21,15 @@ class HomeScreen extends React.Component {
     static navigationOptions = ({ navigation }) => {
         return {
             headerTitle: 'Home',
+            headerTitleStyle: navigation.getParam('fontLoaded', false) ? {fontFamily: 'montserrat'} : {},
             headerRight: (
                 <Button
-                    //style={}
+                    style={[navigation.getParam('fontLoaded', false) ? {fontFamily: 'montserrat'} : {}, {paddingRight: 10}]}
                     onPress={async () => {
                         await AsyncStorage.clear();
                         navigation.navigate('Auth');
                     }}
-                >Sign Out   </Button>
+                >Sign Out</Button>
             ),
         };
     };
@@ -43,12 +44,13 @@ class HomeScreen extends React.Component {
         
     }
 
-    async componentWillMount(){
+    async componentDidMount(){
         let userToken = await AsyncStorage.getItem('userToken');
         await Font.loadAsync({
             'montserrat': require('./assets/fonts/Montserrat/Montserrat-Regular.ttf'),
         });
         this.setState({userToken: userToken, isLoading: false});
+        this.props.navigation.setParams({ fontLoaded: true });
     }
     render() {
         if(this.state.isLoading){
@@ -60,7 +62,7 @@ class HomeScreen extends React.Component {
         }
         return (
             <View style={styles.container}>
-                <Text style={[styles.input, {fontSize: 35}]}>{'Degreez'}</Text>
+                <Text style={[styles.input, {fontSize: 35}]}>{'Degrees'}</Text>
                 <View style={{padding:25}}>
                     <Image
                         style={{width: 150, height: 150, borderRadius: 150/2, borderWidth: 2}}

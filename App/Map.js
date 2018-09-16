@@ -1,7 +1,6 @@
 import React from 'react';
 import {
     ActivityIndicator,
-    Button,
     StyleSheet,
     Text,
     View,
@@ -9,11 +8,20 @@ import {
     Image
 } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
+import Button from 'react-native-button'
 
 export class MapScreen extends React.Component {
     static navigationOptions = ({ navigation }) => {
         return {
             title: 'Map',
+            headerTitleStyle: {fontFamily: 'montserrat'},
+            headerLeft: (
+                <Button
+                    style={{fontFamily: 'montserrat', paddingLeft: 10}}
+                    onPress={() => navigation.goBack()}>
+                    Back
+                </Button>
+            ),
         };
     };
 
