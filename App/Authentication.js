@@ -42,11 +42,11 @@ export class LoggedOutScreen extends React.Component {
         }
         return (
             <View style={styles.container}>
-                <Text style={[styles.input, {fontSize: 30}]}>{'Coffee on Campus'}</Text>
+                <Text style={[styles.input, {fontSize: 30}]}>{'Degreez'}</Text>
                 <View style={{padding:25}}>
                     <Image
                         style={{width: 150, height: 150, borderRadius: 150/2}}
-                        source={{uri: 'https://www.siliconvalleyandbeyond.com/wp-content/uploads/nathan-dumlao-287719-e1513904063816-495x400.jpg'}}
+                        source={require('./assets/images/hoops.png')}
                     />
                 </View>
                 <Button containerStyle={{padding:5}} style={styles.input} onPress={this._goToSignIn}>Sign In</Button>
@@ -81,11 +81,11 @@ export class SignUpScreen extends React.Component {
                 contentContainerStyle={styles.container}
                 scrollEnabled={false}
             >
-                <Text style={[styles.input, {fontSize: 30}]}>{'Coffee on Campus'}</Text>
+                <Text style={[styles.input, {fontSize: 30}]}>{'Degreez'}</Text>
                 <View style={{padding:25}}>
                     <Image
                         style={{width: 150, height: 150, borderRadius: 150/2}}
-                        source={{uri: 'https://www.siliconvalleyandbeyond.com/wp-content/uploads/nathan-dumlao-287719-e1513904063816-495x400.jpg'}}
+                        source={require('./assets/images/hoops.png')}
                     />
                 </View>
                 <View style={styles.inputContainer}>
@@ -161,11 +161,11 @@ export class SignInScreen extends React.Component {
                 contentContainerStyle={styles.container}
                 scrollEnabled={false}
             >
-                <Text style={[styles.input, {fontSize: 30}]}>{'Coffee on Campus'}</Text>
+                <Text style={[styles.input, {fontSize: 30}]}>{'Degreez'}</Text>
                 <View style={{padding:25}}>
                     <Image
                         style={{width: 150, height: 150, borderRadius: 150/2}}
-                        source={{uri: 'https://www.siliconvalleyandbeyond.com/wp-content/uploads/nathan-dumlao-287719-e1513904063816-495x400.jpg'}}
+                        source={require('./assets/images/hoops.png')}
                     />
                 </View>
                 <View style={styles.inputContainer}>
@@ -193,8 +193,8 @@ export class SignInScreen extends React.Component {
 
     _signInAsync = async () => {
         let response = await fetch('http://hackmit-degrees.herokuapp.com/signin?'
-            + 'user=' + this.state.user
-            + '&pass=' + this.state.password
+            + 'username=' + this.state.user
+            + '&password=' + this.state.password
         );
         let responseJson = await response.json();
         if (responseJson.success === true) {
@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'lightyellow'
+        backgroundColor: 'lightblue'
     },
     input: {
         fontSize: 18,
