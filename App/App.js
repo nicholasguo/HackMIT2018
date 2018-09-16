@@ -8,7 +8,7 @@ import {
     View,
     Text,
     TextInput,
-    PixelRatio, Image
+    PixelRatio, Image,
 } from 'react-native';
 import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
 import Button from 'react-native-button';
