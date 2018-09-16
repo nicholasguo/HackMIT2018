@@ -117,15 +117,15 @@ export class SignUpScreen extends React.Component {
     }
 
     _signUpAsync = async () => {
-        let response = await fetch('http://127.0.0.1:5555/signup', {
+        let response = await fetch('http://hackmit-degrees.herokuapp.com/signup', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                user: this.state.user,
-                pass: this.state.password,
+                username: this.state.user,
+                password: this.state.password,
                 email: this.state.email,
             }),
         });
@@ -183,7 +183,7 @@ export class SignInScreen extends React.Component {
     }
 
     _signInAsync = async () => {
-        let response = await fetch('http://127.0.0.1:5555/signin?'
+        let response = await fetch('http://hackmit-degrees.herokuapp.com/signin?'
             + 'user=' + this.state.user
             + '&pass=' + this.state.password
         );

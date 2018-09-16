@@ -11,11 +11,8 @@ import {
     PixelRatio, Image
 } from 'react-native';
 import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
-
 import Button from 'react-native-button';
-
 import { Font } from 'expo';
-
 import { LoggedOutScreen, SignUpScreen, SignInScreen, AuthLoadingScreen } from './Authentication'
 import { ProfileScreen, EditProfileScreen } from "./Profile";
 import { MapScreen } from "./Map";
@@ -39,7 +36,11 @@ class HomeScreen extends React.Component {
     constructor(props) {
         super(props);
         const { navigation } = this.props;
-        this.state = {userToken: '', isLoading: true};
+        this.state = {
+            userToken: '',
+            isLoading: true
+        };
+        
     }
 
     async componentWillMount(){
@@ -49,7 +50,6 @@ class HomeScreen extends React.Component {
         });
         this.setState({userToken: userToken, isLoading: false});
     }
-
     render() {
         if(this.state.isLoading){
             return(
@@ -88,7 +88,6 @@ class HomeScreen extends React.Component {
         this.props.navigation.navigate('Auth');
     };
 }
-
 
 
 const styles = StyleSheet.create({

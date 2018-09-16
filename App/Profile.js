@@ -41,7 +41,7 @@ export class ProfileScreen extends React.Component {
     }
 
     async getProfile() {
-        let response = await fetch('http://127.0.0.1:5555/get_profile?'
+        let response = await fetch('http://hackmit-degrees.herokuapp.com/get_profile?'
             + 'user=' + this.state.user
         );
         let responseJson = await response.json();
@@ -121,7 +121,7 @@ export class EditProfileScreen extends React.Component {
             headerRight: (
                 <Button
                     onPress={async () => {
-                        let response = await fetch('http://127.0.0.1:5555/update_profile', {
+                        let response = await fetch('http://hackmit-degrees.herokuapp.com/update_profile', {
                             method: 'POST',
                             headers: {
                                 'Accept': 'application/json',
@@ -160,7 +160,7 @@ export class EditProfileScreen extends React.Component {
     }
 
     async componentDidMount() {
-        let response = await fetch('http://127.0.0.1:5555/get_profile?'
+        let response = await fetch('http://hackmit-degrees.herokuapp.com/get_profile?'
             + 'user=' + this.state.user
         );
         let responseJson = await response.json();
