@@ -51,7 +51,7 @@ export class ProfileScreen extends React.Component {
 
     async componentDidMount(){
         await this.getProfile();
-        console.log(this.state.image)
+        console.log(this.state)
     }
 
     async componentDidUpdate(){
