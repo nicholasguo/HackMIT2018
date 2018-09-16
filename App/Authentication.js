@@ -16,6 +16,13 @@ import Button from 'react-native-button'
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export class LoggedOutScreen extends React.Component {
+    static navigationOptions = ({ navigation }) => {
+        return {
+            //title: 'Please sign in or create an account',
+            header: null
+        };
+    };
+
     constructor(props) {
         super(props);
         this.state = {user: '', password: '', isLoading: true};
@@ -28,10 +35,6 @@ export class LoggedOutScreen extends React.Component {
         this.setState({isLoading: false});
     }
 
-    static navigationOptions = {
-        title: 'Please sign in or create an account',
-    };
-
     render() {
         if (this.state.isLoading){
             return(
@@ -42,7 +45,7 @@ export class LoggedOutScreen extends React.Component {
         }
         return (
             <View style={styles.container}>
-                <Text style={[styles.input, {fontSize: 30}]}>{'Degreez'}</Text>
+                <Text style={[styles.input, {fontSize: 30}]}>{'Degrees'}</Text>
                 <View style={{padding:25}}>
                     <Image
                         style={{width: 150, height: 150, borderRadius: 150/2, borderWidth: 2}}
@@ -70,8 +73,18 @@ export class SignUpScreen extends React.Component {
         this.state = {user: '', password: '', email: ''};
     }
 
-    static navigationOptions = {
-        title: 'Create an Account',
+    static navigationOptions = ({ navigation }) => {
+        return {
+            title: 'Create an Account',
+            headerTitleStyle: {fontFamily: 'montserrat'},
+            headerLeft: (
+                <Button
+                    style={{fontFamily: 'montserrat', paddingLeft: 10}}
+                    onPress={() => navigation.goBack()}>
+                    Back
+                </Button>
+            ),
+        };
     };
 
     render() {
@@ -81,7 +94,7 @@ export class SignUpScreen extends React.Component {
                 contentContainerStyle={styles.container}
                 scrollEnabled={false}
             >
-                <Text style={[styles.input, {fontSize: 30}]}>{'Degreez'}</Text>
+                <Text style={[styles.input, {fontSize: 30}]}>{'Degrees'}</Text>
                 <View style={{padding:25}}>
                     <Image
                         style={{width: 150, height: 150, borderRadius: 150/2, borderWidth: 2}}
@@ -150,8 +163,19 @@ export class SignInScreen extends React.Component {
         this.state = {user: '', password: ''};
     }
 
-    static navigationOptions = {
-        title: 'Sign in',
+    static navigationOptions = ({ navigation }) => {
+        return {
+            title: 'Sign in',
+            headerTitleStyle: {fontFamily: 'montserrat'},
+            headerLeft: (
+                <Button
+                    style={{fontFamily: 'montserrat', paddingLeft: 10}}
+                    onPress={() => navigation.goBack()}>
+                    Back
+                </Button>
+            ),
+        };
+
     };
 
     render() {
@@ -161,7 +185,7 @@ export class SignInScreen extends React.Component {
                 contentContainerStyle={styles.container}
                 scrollEnabled={false}
             >
-                <Text style={[styles.input, {fontSize: 30}]}>{'Degreez'}</Text>
+                <Text style={[styles.input, {fontSize: 30}]}>{'Degrees'}</Text>
                 <View style={{padding:25}}>
                     <Image
                         style={{width: 150, height: 150, borderRadius: 150/2, borderWidth: 2}}
